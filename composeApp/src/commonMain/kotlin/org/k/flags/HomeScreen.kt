@@ -19,7 +19,7 @@ import kotlin.text.contains
 @Composable
 fun HomeScreen(countriesCachePath: String,
                searchQuery: String,
-               navigateToWeather: (String, Double, Double) -> Unit) {
+               navigateToWeather: (String, String, Double, Double) -> Unit) {
     Surface {
         var listCountries: List<Country> by remember { mutableStateOf(mutableListOf()) }
 

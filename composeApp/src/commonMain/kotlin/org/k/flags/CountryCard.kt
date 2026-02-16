@@ -16,7 +16,7 @@ fun CountryCard(
     modifier: Modifier,
     country: Country,
     currentCountry: Boolean,
-    navigateToWeather: (String, Double, Double) -> Unit
+    navigateToWeather: (String, String, Double, Double) -> Unit
 ) {
     Box(modifier = modifier
         .fillMaxWidth()
@@ -25,7 +25,7 @@ fun CountryCard(
             val capital = country.capital.firstOrNull() ?: ""
             val lat = country.capitalInfo?.latlng?.getOrNull(0) ?: 0.0
             val lng = country.capitalInfo?.latlng?.getOrNull(1) ?: 0.0
-            navigateToWeather(capital, lat, lng)
+            navigateToWeather(country.name.official, capital, lat, lng)
         }
     ) {
         if (currentCountry) {

@@ -15,9 +15,10 @@ import org.k.flags.country.CapitalInfo
 @Composable
 fun WeatherButton(
     modifier: Modifier = Modifier,
+    country: String,
     capitals: List<String>,
     capitalInfo: CapitalInfo,
-    navigateToWeather: (String, Double, Double) -> Unit
+    navigateToWeather: (String, String, Double, Double) -> Unit
 ) {
     Row(
         modifier = modifier,
@@ -34,6 +35,7 @@ fun WeatherButton(
                     ),
                     onClick = {
                         navigateToWeather(
+                            country,
                             it,
                             capitalInfo.latlng[0],
                             capitalInfo.latlng[1]

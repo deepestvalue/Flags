@@ -74,6 +74,9 @@ kotlin {
 
             // for logging
             implementation("co.touchlab:kermit:2.0.4")
+
+            implementation("org.jetbrains.compose.components:components-resources:1.6.11") // or your current version
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.6.11")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

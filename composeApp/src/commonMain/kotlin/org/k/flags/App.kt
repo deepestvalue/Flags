@@ -99,9 +99,9 @@ fun App(countriesCachePath: String) {
             Box( modifier = Modifier.padding(innerPadding)) {
                 NavHost(navController = navController, startDestination = "home") {
                     composable("home") {
-                        HomeScreen(countriesCachePath, searchQuery) { cityName, lat, lng ->
+                        HomeScreen(countriesCachePath, searchQuery) { country, capital, lat, lng ->
                             // Use the data class for navigation
-                            navController.navigate(WeatherRoute(cityName, lat.toFloat(), lng.toFloat()))
+                            navController.navigate(WeatherRoute(country, capital, lat.toFloat(), lng.toFloat()))
                         }
                     }
                     // Use the class type here instead of a string path
@@ -110,9 +110,11 @@ fun App(countriesCachePath: String) {
                         val args: WeatherRoute = backStackEntry.toRoute()
 
                         WeatherScreen(
-                            cityName = args.cityName,
-                            lat = args.lat.toDouble(),
-                            long = args.long.toDouble()
+                            countriesCachePath = countriesCachePath,
+                            countryName = args.countryOfficialName,
+                            capital = args.capitalName,
+                            lat = args.capitalLat.toDouble(),
+                            long = args.capitalLong.toDouble()
                         )
                     }
                 }

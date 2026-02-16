@@ -9,9 +9,10 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.k.flags.country.Country
 
-class CountryAPI {
+class CountriesAPI {
 
-    val API_URL = "https://restcountries.com/v3.1/all?fields=name,cca2,flags,capital,capitalInfo,languages,currencies"
+    // Available fields here https://www.npmjs.com/package/@yusifaliyevpro/countries#available-fields
+    val API_URL = "https://restcountries.com/v3.1/all?fields=name,cca2,flags,capital,capitalInfo,languages,currencies,region,subregion"
 
     private val httpClient = HttpClient {
         install(ContentNegotiation) {

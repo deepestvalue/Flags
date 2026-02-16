@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 import org.k.flags.country.Country
 
 @Composable
-fun Country(modifier: Modifier, country: Country, navigateToWeather: (String, Double, Double)-> Unit) {
+fun Country(modifier: Modifier, country: Country, navigateToWeather: (String, String, Double, Double)-> Unit) {
     Row(modifier = Modifier.padding(8.dp)) {
         Column(modifier = Modifier.width(130.dp)) {
             Flag(modifier = Modifier.fillMaxWidth().padding(8.dp), country.flags)
@@ -16,7 +16,7 @@ fun Country(modifier: Modifier, country: Country, navigateToWeather: (String, Do
             CountryNames(name = country.name)
             val capitalInfo = country.capitalInfo
             if (country.capital.isNotEmpty() && capitalInfo != null) {
-                WeatherButton(capitals = country.capital, capitalInfo = capitalInfo,
+                WeatherButton(country= country.name.official, capitals = country.capital, capitalInfo = capitalInfo,
                     navigateToWeather = navigateToWeather
                 )
             }

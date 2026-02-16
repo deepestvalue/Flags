@@ -8,5 +8,10 @@ data class Country(
     val capitalInfo: CapitalInfo? = null,
     val flags: Flags,
     val name: Name,
-    val cca2: String
+    val cca2: String,
+    val region: String,
+    val subregion: String,
+    val currencies: Map<String, CurrencyDetail> = emptyMap(),
+    val languages: Map<String, String> = emptyMap(),
+    val factbookUrl: String? = null
 )

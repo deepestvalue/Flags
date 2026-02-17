@@ -15,7 +15,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,6 +28,8 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
+import coil3.compose.AsyncImage
+import org.k.flags.country.Flags
 
 @Composable
 fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
@@ -66,7 +70,8 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
             InsightSection(
                 icon = Icons.Default.Public,
                 label = "General Information",
-                content = "Region: ${country.region}"
+                content = "Region: ${country.region}",
+                flags = country.flags,
             )
 
             // 2. Factbook Data
@@ -80,7 +85,7 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
                     )
                 }
 
-                // Geography
+                // 3. Geography
                 val geoContent = buildAnnotatedString {
                     factbook.geography?.location?.text?.let {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
@@ -112,7 +117,7 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
                     )
                 }
 
-                // Economy
+                // 4. Economy
                 factbook.economy?.overview?.text?.let { overview ->
                     InsightSection(
                         icon = Icons.Default.ShoppingCart,
@@ -121,7 +126,7 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
                     )
                 }
 
-                // People & Society
+                // 5. People & Society
                 val peopleContent = buildAnnotatedString {
                     factbook.peopleAndSociety?.population?.total?.text?.let {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
@@ -146,7 +151,7 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
                     )
                 }
 
-                // Government (Time Difference)
+                // 6. Government (Time Difference)
                 factbook.government?.capital?.timeDifference?.text?.let { time ->
                     InsightSection(
                         icon = Icons.Default.Schedule,
@@ -176,16 +181,28 @@ private fun InsightSection(
     icon: ImageVector,
     label: String,
     content: String? = null,
-    annotatedContent: AnnotatedString? = null
+    annotatedContent: AnnotatedString? = null,
+    flags: Flags? = null
 ) {
     Column(modifier = Modifier.padding(vertical = 12.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-                tint = MaterialTheme.colorScheme.secondary
-            )
+            if (flags != null) {
+                AsyncImage(
+                    model = flags.png,
+                    contentDescription = flags.alt,
+                    modifier = Modifier
+                        .size(width = 28.dp, height = 20.dp)
+                        .clip(RoundedCornerShape(2.dp)),
+                    contentScale = ContentScale.FillBounds
+                )
+            } else {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.secondary
+                )
+            }
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = label,

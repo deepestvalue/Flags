@@ -2,10 +2,7 @@ package org.k.flags
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Surface
@@ -23,7 +20,6 @@ import org.k.flags.country.Country
 import org.k.flags.country.FactbookCountry
 import org.k.flags.country.GeocodeResponse
 import org.k.flags.network.CountryDetailAPI
-
 
 @Composable
 fun WeatherScreen(countriesCachePath: String,

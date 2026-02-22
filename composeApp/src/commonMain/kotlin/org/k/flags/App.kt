@@ -34,6 +34,7 @@ import androidx.compose.runtime.setValue
 import coil3.compose.setSingletonImageLoaderFactory
 import org.k.flags.generated.resources.close_24px
 import org.k.flags.generated.resources.search_24px
+import org.k.flags.generated.resources.settings_24px
 import util.getSharedImageLoader
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +55,9 @@ fun App(countriesCachePath: String) {
                 TopAppBar(
                     title = { Text("Flags") },
                     navigationIcon = {
-                        if (currentRoute?.hasRoute<WeatherRoute>() == true) {
+                        val canGoBack = currentRoute?.hasRoute<WeatherRoute>() == true ||
+                                currentRoute?.route == "settings"
+                        if (canGoBack) {
                             IconButton(onClick = { navController.navigateUp() }) {
                                 Icon(
                                     // Use painterResource for the local XML file
@@ -97,10 +100,25 @@ fun App(countriesCachePath: String) {
                                 singleLine = true
                             )
                         }
+                    },
+                    actions = {
+                        if (currentRoute?.route == "home") {
+                            IconButton(onClick = { navController.navigate("settings") } ) {
+                                Icon(
+                                    painter = painterResource(Res.drawable.settings_24px),
+                                    contentDescription = "Settings",
+
+                                    // You can change size or color easily
+                                    modifier = Modifier.size(24.dp),
+                                    tint = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+
+                        }
                     }
                 )
             }
-        ) {innerPadding ->
+        ) { innerPadding ->
             Box( modifier = Modifier.padding(innerPadding)) {
                 NavHost(navController = navController, startDestination = "home") {
                     composable("home") {
@@ -121,6 +139,10 @@ fun App(countriesCachePath: String) {
                             lat = args.capitalLat.toDouble(),
                             long = args.capitalLong.toDouble()
                         )
+                    }
+
+                    composable("settings") {
+                        SettingsScreen()
                     }
                 }
             }

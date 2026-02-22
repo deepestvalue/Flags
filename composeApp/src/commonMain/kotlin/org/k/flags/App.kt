@@ -35,8 +35,6 @@ import coil3.compose.setSingletonImageLoaderFactory
 import org.k.flags.generated.resources.close_24px
 import org.k.flags.generated.resources.search_24px
 import util.getSharedImageLoader
-import util.provideCachePath
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

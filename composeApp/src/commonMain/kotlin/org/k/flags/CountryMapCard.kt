@@ -24,9 +24,7 @@ import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
 import org.k.flags.country.Country
 import org.k.flags.country.GeocodeResponse
-import coil3.compose.AsyncImage
 import coil3.compose.SubcomposeAsyncImage
-import io.ktor.http.encodeURLQueryComponent
 
 val MAP_URL = "https://maps.geoapify.com/v1/staticmap"
 

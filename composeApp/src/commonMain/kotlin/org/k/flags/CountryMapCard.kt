@@ -104,6 +104,6 @@ fun getCountryMapUrl(geocode: GeocodeResponse): String {
         append("&apiKey=${Config.GeoApiKey}")
     }
 
-    Logger.i("Map URL without placeId $mapUrl")
+    Logger.d("Map URL without placeId $mapUrl")
     return mapUrl
 }

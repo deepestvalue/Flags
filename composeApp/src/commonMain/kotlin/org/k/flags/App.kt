@@ -31,13 +31,20 @@ import org.k.flags.generated.resources.Res
 import org.k.flags.generated.resources.arrow_back_2_24px
 import org.jetbrains.compose.resources.painterResource
 import androidx.compose.runtime.setValue
+import coil3.compose.setSingletonImageLoaderFactory
 import org.k.flags.generated.resources.close_24px
 import org.k.flags.generated.resources.search_24px
+import util.getSharedImageLoader
+import util.provideCachePath
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App(countriesCachePath: String) {
+    setSingletonImageLoaderFactory { context ->
+        getSharedImageLoader(context = context)
+    }
+
     MaterialTheme {
         val navController = rememberNavController()
         val navBackStackEntry by navController.currentBackStackEntryAsState()

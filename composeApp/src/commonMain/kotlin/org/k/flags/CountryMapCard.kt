@@ -3,6 +3,7 @@ package org.k.flags
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import co.touchlab.kermit.Logger
 import org.k.flags.country.Country
 import org.k.flags.country.GeocodeResponse
 import coil3.compose.AsyncImage
+import coil3.compose.SubcomposeAsyncImage
 import io.ktor.http.encodeURLQueryComponent
 
 val MAP_URL = "https://maps.geoapify.com/v1/staticmap"
@@ -51,14 +53,32 @@ fun CountryMapCard(country: Country, geocode: GeocodeResponse?) {
             if (bbox != null && bbox.size == 4) {
                 val mapUrl = getCountryMapUrl(geocode)
 
-                AsyncImage(
+                SubcomposeAsyncImage(
                     model = mapUrl,
                     contentDescription = "Map showing the full territory of ${country.name.common}",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(250.dp)
-                        .clip(RoundedCornerShape(2.dp)),
-                    contentScale = ContentScale.Crop
+                        .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)),
+                    contentScale = ContentScale.Crop,
+                    loading = {
+                        // This shows while the IMAGE is downloading
+                        Box(
+                            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surfaceVariant),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator(modifier = Modifier.size(32.dp))
+                        }
+                    },
+                    error = {
+                        // This shows if the network request fails
+                        Box(
+                            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.errorContainer),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("Failed to load map", color = MaterialTheme.colorScheme.onErrorContainer)
+                        }
+                    }
                 )
             } else {
                 // 2. Fallback/Loading State

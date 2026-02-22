@@ -111,7 +111,7 @@ fun App(countriesCachePath: String) {
 
                         WeatherScreen(
                             countriesCachePath = countriesCachePath,
-                            countryName = args.countryOfficialName,
+                            countryOfficialName = args.countryOfficialName,
                             capital = args.capitalName,
                             lat = args.capitalLat.toDouble(),
                             long = args.capitalLong.toDouble()

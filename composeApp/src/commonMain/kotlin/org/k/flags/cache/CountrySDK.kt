@@ -19,6 +19,8 @@ class CountrySDK (countriesCachePath: String) {
     // Memory cache for the GEC/Region mapping
     private var mapping: Map<String, FactbookMapping> = emptyMap()
 
+    // https://github.com/factbook/factbook.json this is the factbook repo that holds
+    // countries details in each region
     private val manualOverrides = mapOf(
         "dr congo" to "drc",
         "democratic republic of the congo" to "drc",

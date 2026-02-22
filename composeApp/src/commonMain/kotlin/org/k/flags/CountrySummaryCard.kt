@@ -36,7 +36,7 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp),
+            .padding(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -44,7 +44,6 @@ fun CountrySummaryCard(country: Country, factbook: FactbookCountry?) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
                 .padding(20.dp)
         ) {
             // Header with Icon

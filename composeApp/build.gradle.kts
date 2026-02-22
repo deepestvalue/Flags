@@ -151,5 +151,11 @@ buildkonfig {
             "WeatherApiKey",
             gradleLocalProperties(project.rootDir, providers).getProperty("WEATHER_API_KEY") ?: ""
         )
+
+        buildConfigField(
+            STRING,
+            "GeoApiKey",
+            gradleLocalProperties(project.rootDir, providers).getProperty("GEOAPIFY_API_KEY") ?: ""
+        )
     }
 }

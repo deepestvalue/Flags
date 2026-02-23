@@ -33,3 +33,6 @@ in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and r
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+This app is heavily inspired by the KMP Webinar [here](https://github.com/kotlin-hands-on/native-ui-webinar) and [here](https://www.youtube.com/live/zE2LIAUisRI?si=fnpBYbyZooFu6c8O)
+

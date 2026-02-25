@@ -29,4 +29,5 @@ iosApp/*.xcodeproj/xcuserdata
 .lsreachable
 # macOS
 .DS_Store
+*.mov
 
